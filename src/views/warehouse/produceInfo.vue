@@ -1,8 +1,23 @@
 <template>
+  <el-row :gutter="20">
+    <el-col :span="6">
+      <remoteSelect
+        v-model="state.number"
+        :remoteMethod="(query:string) => remoteMethod(query, 'number', tableData)"
+      />
+    </el-col>
+    <el-col :span="6"> </el-col>
+    <el-col :span="6">
+      <div class="grid-content ep-bg-purple" />
+    </el-col>
+    <el-col :span="6">
+      <div class="grid-content ep-bg-purple" />
+    </el-col>
+  </el-row>
   <div>
     <el-table :data="tableData" stripe style="width: 100%">
-      <el-table-column prop="number" label="产品编号" />
-      <el-table-column prop="name" label="产品名称" />
+      <el-table-column prop="number" label="产品编号" width="180" />
+      <el-table-column prop="name" label="产品名称" width="180" />
       <el-table-column prop="type" label="产品类型" />
       <el-table-column prop="size" label="尺寸" />
       <el-table-column prop="color" label="颜色" />
@@ -10,8 +25,17 @@
   </div>
 </template>
 
-<script setup>
-const tableData = [
+<script setup lang="ts">
+import { reactive } from "vue";
+import remoteSelect from "../../components/remoteSelect.vue";
+type option = {
+  number: string;
+  name: string;
+  type: string;
+  size: string;
+  color: string;
+};
+const tableData: option[] = [
   {
     number: "56284/Do",
     name: "色粉",
@@ -55,6 +79,42 @@ const tableData = [
     color: "AM72844",
   },
 ];
+interface ListItem {
+  value: string;
+  label: string;
+}
+const state: {
+  number: string;
+} = reactive({
+  number: "",
+});
+
+const remoteMethod = (query: string, key: keyof option, Data: option[]) => {
+  return new Promise<ListItem[]>((resolve) => {
+    if (query) {
+      setTimeout(() => {
+        const options = Data.filter((item) =>
+          item[key].toLowerCase().includes(query.toLowerCase())
+        ).map((item) => {
+          return {
+            value: item[key],
+            label: item[key],
+          };
+        });
+        resolve(options);
+      }, 200);
+    } else {
+      resolve(
+        Data.map((item) => {
+          return {
+            value: item[key],
+            label: item[key],
+          };
+        })
+      );
+    }
+  });
+};
 </script>
 
 <style lang="less" scoped></style>

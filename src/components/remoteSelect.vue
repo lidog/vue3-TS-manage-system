@@ -1,6 +1,5 @@
 <template>
   <el-select
-    v-model="value"
     multiple
     filterable
     remote
@@ -9,6 +8,7 @@
     remote-show-suffix
     :remote-method="remoteMethod"
     :loading="state.loading"
+    :attrs="$attrs"
   >
     <el-option
       v-for="item in state.options"
@@ -26,7 +26,6 @@ interface ListItem {
   label: string;
 }
 interface Props {
-  value?: string;
   remoteMethod: (query: string) => Promise<ListItem[]>;
   placeholder?: string;
 }
