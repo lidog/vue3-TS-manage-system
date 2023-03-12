@@ -182,6 +182,15 @@ const routes: RouteRecordRaw[] = [
         component: () =>
           import(/* webpackChunkName: "tabs" */ "../views/tabs.vue"),
       },
+      {
+        path: "/user",
+        name: "user",
+        meta: {
+          title: "个人中心",
+        },
+        component: () =>
+          import(/* webpackChunkName: "user" */ "../views/user.vue"),
+      },
     ],
   },
   {
