@@ -40,7 +40,7 @@ The scheme as a set of multi-function background frame templates, suitable for m
 -   [x] Editor
 -   [x] Markdown
 -   [x] Upload pictures by clipping or dragging
--   [x] Permission
+-   [x] premission
 -   [x] Three level menu
 -   [x] Custom icon
 
