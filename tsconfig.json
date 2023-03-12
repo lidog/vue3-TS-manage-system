@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES2015",
+    "target": "ES2017",
     "useDefineForClassFields": true,
     "module": "CommonJS",
     "moduleResolution": "Node",
@@ -10,7 +10,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "esModuleInterop": true,
-    "lib": ["ES2015", "DOM", "ES2015.Promise"],
+    "lib": ["ES2017", "DOM", "ES2015.Promise"],
     "skipLibCheck": true
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts","src/**/*.vue"],

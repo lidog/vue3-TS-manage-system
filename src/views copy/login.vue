@@ -34,7 +34,7 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue';
 import { useTagsStore } from '../store/tags';
-import { usepremissStore } from '../store/premiss';
+import { usePremissStore } from '../store/premiss';
 import { useRouter } from 'vue-router';
 import { ElMessage } from 'element-plus';
 import type { FormInstance, FormRules } from 'element-plus';
@@ -61,7 +61,7 @@ const rules: FormRules = {
 	],
 	password: [{ required: true, message: '请输入密码', trigger: 'blur' }]
 };
-const premiss = usepremissStore();
+const premiss = usePremissStore();
 const login = ref<FormInstance>();
 const submitForm = (formEl: FormInstance | undefined) => {
 	if (!formEl) return;

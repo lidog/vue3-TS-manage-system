@@ -25,7 +25,7 @@
 <script setup lang="ts" name="premission">
 import { ref } from 'vue';
 import { ElTree } from 'element-plus';
-import { usepremissStore } from '../store/premiss';
+import { usePremissStore } from '../store/premiss';
 
 const role = ref<string>('admin');
 
@@ -105,7 +105,7 @@ const data: Tree[] = [
 	}
 ];
 
-const premiss = usepremissStore();
+const premiss = usePremissStore();
 
 // 获取当前权限
 const checkedKeys = ref<string[]>([]);

@@ -4,7 +4,7 @@ interface ObjectList {
 	[key: string]: string[];
 }
 
-export const usepremissStore = defineStore('premiss', {
+export const usePremissStore = defineStore('premiss', {
 	state: () => {
 		const keys = localStorage.getItem('ms_keys');
 		return {

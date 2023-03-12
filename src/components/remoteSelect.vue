@@ -1,6 +1,5 @@
 <template>
   <el-select
-    multiple
     filterable
     remote
     reserve-keyword

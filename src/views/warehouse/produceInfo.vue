@@ -1,17 +1,42 @@
 <template>
-  <el-row :gutter="20">
-    <el-col :span="6">
+  <el-row :gutter="10" class="py-4">
+    <el-col :span="4">
       <remoteSelect
         v-model="state.number"
-        :remoteMethod="(query:string) => remoteMethod(query, 'number', tableData)"
+        :remoteMethod="(query:string) => remoteMethod(query, 'number')"
+        placeholder="请输入产品编号"
       />
     </el-col>
-    <el-col :span="6"> </el-col>
-    <el-col :span="6">
-      <div class="grid-content ep-bg-purple" />
+    <el-col :span="4">
+      <remoteSelect
+        placeholder="请输入产品名称"
+        v-model="state.name"
+        :remoteMethod="(query:string) => remoteMethod(query, 'name')"
+      />
     </el-col>
-    <el-col :span="6">
-      <div class="grid-content ep-bg-purple" />
+    <el-col :span="4">
+      <remoteSelect
+        placeholder="请输入产品类型"
+        v-model="state.type"
+        :remoteMethod="(query:string) => remoteMethod(query, 'type')"
+      />
+    </el-col>
+    <el-col :span="4">
+      <remoteSelect
+        placeholder="请输入尺寸"
+        v-model="state.size"
+        :remoteMethod="(query:string) => remoteMethod(query, 'size')"
+      />
+    </el-col>
+    <el-col :span="4">
+      <remoteSelect
+        placeholder="请输入颜色"
+        v-model="state.color"
+        :remoteMethod="(query:string) => remoteMethod(query, 'color')"
+      />
+    </el-col>
+    <el-col :span="4">
+      <el-button type="primary">添加产品</el-button>
     </el-col>
   </el-row>
   <div>
@@ -35,7 +60,7 @@ type option = {
   size: string;
   color: string;
 };
-const tableData: option[] = [
+const tableData: option[] = reactive([
   {
     number: "56284/Do",
     name: "色粉",
@@ -78,41 +103,85 @@ const tableData: option[] = [
     size: "100*100",
     color: "AM72844",
   },
-];
+]);
 interface ListItem {
   value: string;
   label: string;
 }
-const state: {
+let state: {
   number: string;
+  name: string;
+  type: string;
+  size: string;
+  color: string;
 } = reactive({
   number: "",
+  name: "",
+  type: "",
+  size: "",
+  color: "",
 });
 
-const remoteMethod = (query: string, key: keyof option, Data: option[]) => {
+const remoteMethod = (query: string, key: keyof option) => {
   return new Promise<ListItem[]>((resolve) => {
+    let valueMap: {
+      [key: string]: boolean;
+    } = {};
     if (query) {
       setTimeout(() => {
-        const options = Data.filter((item) =>
-          item[key].toLowerCase().includes(query.toLowerCase())
-        ).map((item) => {
-          return {
-            value: item[key],
-            label: item[key],
-          };
-        });
+        const options = tableData
+          .filter((item) => {
+            if (
+              item[key].toLowerCase().includes(query.toLowerCase()) &&
+              !valueMap[item[key]]
+            ) {
+              valueMap[item[key]] = true;
+              return true;
+            }
+          })
+          .map((item) => {
+            return {
+              value: item[key],
+              label: item[key],
+            };
+          });
         resolve(options);
       }, 200);
     } else {
       resolve(
-        Data.map((item) => {
-          return {
-            value: item[key],
-            label: item[key],
-          };
-        })
+        tableData
+          .filter((item) => {
+            if (!valueMap[item[key]]) {
+              valueMap[item[key]] = true;
+              return true;
+            }
+          })
+          .map((item) => {
+            return {
+              value: item[key],
+              label: item[key],
+            };
+          })
       );
     }
+  });
+};
+
+const addProduce = () => {
+  const { number, name, type, size, color } = state;
+  tableData.push({
+    number,
+    name,
+    type,
+    size,
+    color,
+  });
+  state = reactive({
+    number: "",
+    name: "",
+    type: "",
+    size: "",
+    color: "",
   });
 };
 </script>

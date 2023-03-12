@@ -1,5 +1,5 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
-import { usepremissStore } from '../store/premiss';
+import { usePremissStore } from '../store/premiss';
 import Home from '../views/home.vue';
 
 const routes: RouteRecordRaw[] = [
@@ -191,7 +191,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
     document.title = `${to.meta.title} | vue-manage-system`;
     const role = localStorage.getItem('ms_username');
-    const premiss = usepremissStore();
+    const premiss = usePremissStore();
     if (!role && to.path !== '/login') {
         next('/login');
     } else if (to.meta.premiss && !premiss.key.includes(to.meta.premiss)) {
