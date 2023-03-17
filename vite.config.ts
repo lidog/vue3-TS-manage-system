@@ -20,4 +20,8 @@ export default defineConfig({
   optimizeDeps: {
     include: ["schart.js"],
   },
+  build: {
+    //...
+    sourcemap: 'inline',
+  }
 });
