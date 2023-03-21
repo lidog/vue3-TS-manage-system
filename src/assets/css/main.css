@@ -134,3 +134,7 @@ a {
 [hidden]{
     display: none !important;
 }
+
+.el-dialog__body {
+    padding-top: 10px;
+}

@@ -43,105 +43,6 @@ import { computed } from 'vue';
 import { useSidebarStore } from '../store/sidebar';
 import { useRoute } from 'vue-router';
 
-/** 
-const items = [
-    {
-        icon: 'Odometer',
-        index: '/dashboard',
-        title: '系统首页',
-        premiss: '1',
-    },
-    {
-        icon: 'Calendar',
-        index: '1',
-        title: '表格相关',
-        premiss: '2',
-        subs: [
-            {
-                index: '/table',
-                title: '常用表格',
-                premiss: '2',
-            },
-            {
-                index: '/import',
-                title: '导入Excel',
-                premiss: '2',
-            },
-            {
-                index: '/export',
-                title: '导出Excel',
-                premiss: '2',
-            },
-        ],
-    },
-    {
-        icon: 'DocumentCopy',
-        index: '/tabs',
-        title: 'tab选项卡',
-        premiss: '3',
-    },
-    {
-        icon: 'Edit',
-        index: '3',
-        title: '表单相关',
-        premiss: '4',
-        subs: [
-            {
-                index: '/form',
-                title: '基本表单',
-                premiss: '5',
-            },
-            {
-                index: '/upload',
-                title: '文件上传',
-                premiss: '6',
-            },
-            {
-                index: '4',
-                title: '三级菜单',
-                premiss: '7',
-                subs: [
-                    {
-                        index: '/editor',
-                        title: '富文本编辑器',
-                        premiss: '8',
-                    },
-                    {
-                        index: '/markdown',
-                        title: 'markdown编辑器',
-                        premiss: '9',
-                    },
-                ],
-            },
-        ],
-    },
-    {
-        icon: 'Setting',
-        index: '/icon',
-        title: '自定义图标',
-        premiss: '10',
-    },
-    {
-        icon: 'PieChart',
-        index: '/charts',
-        title: 'schart图表',
-        premiss: '11',
-    },
-    {
-        icon: 'Warning',
-        index: '/premission',
-        title: '权限管理',
-        premiss: '13',
-    },
-    {
-        icon: 'CoffeeCup',
-        index: '/donate',
-        title: '支持作者',
-        premiss: '14',
-    },
-];
-*/
-
 const items = [
     {
         icon: 'Calendar',
@@ -155,6 +56,11 @@ const items = [
                 premiss: '2',
             },
             {
+                index: '/warehouse/labelManagement',
+                title: '标签管理',
+                premiss: '2',
+            },
+            {
                 index: '/warehouse/add',
                 title: '入库',
                 premiss: '2',
@@ -162,6 +68,11 @@ const items = [
             {
                 index: '/warehouse/minus',
                 title: '出库',
+                premiss: '2',
+            },
+            {
+                index: '/warehouse/warehouseManage',
+                title: '库存管理',
                 premiss: '2',
             },
         ],
