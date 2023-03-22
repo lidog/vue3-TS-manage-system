@@ -50,7 +50,7 @@ const tableData = reactive(
     5: "Do",
   }))
 );
-const buttons = reactive(["复制录入"]);
+const buttons = reactive(["复制录入", "删除"]);
 const drawerBoolean = ref(false);
 const record = () => {
   drawerBoolean.value = true;

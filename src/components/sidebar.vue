@@ -12,14 +12,14 @@
                             <span>{{ item.title }}</span>
                         </template>
                         <template v-for="subItem in item.subs">
-                            <el-sub-menu v-if="subItem.subs" :index="subItem.index" :key="subItem.index"
+                            <!-- <el-sub-menu v-if="subItem" :index="subItem.index" :key="subItem.index"
                                 v-premiss="item.premiss">
                                 <template #title>{{ subItem.title }}</template>
                                 <el-menu-item v-for="(threeItem, i) in subItem.subs" :key="i" :index="threeItem.index">
                                     {{ threeItem.title }}
                                 </el-menu-item>
-                            </el-sub-menu>
-                            <el-menu-item v-else :index="subItem.index" v-premiss="item.premiss">
+                            </el-sub-menu> -->
+                            <el-menu-item :index="subItem.index" v-premiss="item.premiss">
                                 {{ subItem.title }}
                             </el-menu-item>
                         </template>
