@@ -9,7 +9,7 @@
     </template>
     <template #right>
       <el-button type="primary" @click="drawerBoolean = true"
-        >手动入库</el-button
+        >添加记录</el-button
       >
     </template>
   </pageHeader>
@@ -19,11 +19,11 @@
     :sortableIndex="sortableIndex"
     :column-config="columnConfig"
     :tableData="_tableData"
-    :buttons="['删除']"
+    :buttons="['删除', '入库']"
     @toolsHandle="toolsHandle"
   />
   <el-footer class="flex items-center justify-end">
-    <el-button type="primary" @click="add">入库</el-button>
+    <el-button type="primary" @click="add">全部入库</el-button>
   </el-footer>
   <drawer
     title="添加入库"
@@ -75,6 +75,8 @@ const toolsHandle = (type) => {
     ElMessage({type: "success", message:"删除成功"});
   }
   if (type === 1) {
+    _tableData.splice(0, 1);
+    ElMessage({type: "success", message:"入库成功"});
   }
 };
 const record = () => {

@@ -28,7 +28,7 @@
 
 <script setup>
 import selfTable from "@/components/selfTable.vue";
-import { reactive, defineEmits, defineProps, computed } from "vue";
+import { reactive, defineEmits, defineProps, computed, ref } from "vue";
 import { Search } from "@element-plus/icons-vue";
 import pageHeader from "@/components/pageHeader.vue";
 const props = defineProps({
@@ -83,6 +83,7 @@ const sortableIndex = reactive([1]);
 const toolsHandle = () => {
   tableData.value.splice(0, 1);
 };
+const produce = ref("");
 </script>
 
 <style lang="less" scoped></style>

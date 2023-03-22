@@ -1,17 +1,5 @@
 <template>
-  <pageHeader>
-    <template #left>
-      <el-input class="mr-2" placeholder="扫码精准查看库存" clearable>
-        <template #append>
-          <el-button :icon="FullScreen" />
-        </template>
-      </el-input>
-    </template>
-    <template #right>
-      <el-button type="primary">excel导出</el-button>
-    </template>
-  </pageHeader>
-  <div class="flex items-start justify-between pb-5">
+  <div class="flex items-start justify-between pb-2">
     <div
       class="flex items-start justify-between left"
       :class="[more ? 'show' : 'close']"
@@ -30,6 +18,15 @@
     </div>
     <div class="right"></div>
   </div>
+  <pageHeader>
+    <template #left>
+      <el-input class="mr-2" placeholder="扫码精准查看库存" clearable>
+        <template #append>
+          <el-button :icon="FullScreen" />
+        </template>
+      </el-input>
+    </template>
+  </pageHeader>
   <el-tag>库存列表</el-tag>
   <selfTable
     selection
