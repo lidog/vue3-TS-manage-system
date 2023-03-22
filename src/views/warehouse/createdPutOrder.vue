@@ -16,10 +16,10 @@
     </el-tab-pane>
     <el-tab-pane label="添加入仓记录" name="2">
       <el-header class="flex items-center justify-end">
-        <el-button type="success" @click="dialogTableVisible = true"
+        <el-button type="primary"  @click="dialogTableVisible = true"
           >添加记录</el-button
         >
-        <el-button type="primary" @click="step = '3'">拆解入仓单</el-button>
+        <el-button type="success"  @click="step = '3'">拆解入仓单</el-button>
       </el-header>
       <selfTable
         :column-config="columnConfig"
@@ -30,7 +30,8 @@
     </el-tab-pane>
     <el-tab-pane label="入仓单拆解" name="3">
       <el-header class="flex items-center justify-end">
-        <el-button type="primary" @click="step = '4'">生成标签</el-button>
+        <el-button type="primary">保存入仓单</el-button>
+        <el-button type="success" @click="step = '4'">生成标签</el-button>
       </el-header>
       <selfTable
         :column-config="columnConfig2"

@@ -1,8 +1,9 @@
 <template>
-  <div class="flex justify-end mb-2">
-    <el-tag class="mr-4">制表人：寿平</el-tag>
+  <div class="flex items-center justify-between mb-2">
+    <div><el-tag class="mr-4">制表人：寿平</el-tag>
     <el-tag class="mr-4">签收人：玉君</el-tag>
-    <el-tag class="mr-4">2023/06/13</el-tag>
+    <el-tag class="mr-4">2023/06/13</el-tag></div>
+    <el-button type="primary">去打印</el-button>
   </div>
   <selfTable
     :sortableIndex="sortableIndex"

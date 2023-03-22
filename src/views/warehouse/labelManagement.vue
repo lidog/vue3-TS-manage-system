@@ -7,10 +7,10 @@
         </template>
       </el-input>
       <el-button type="primary" @click="dialogTableVisible3=true">创建入仓指令单</el-button>
+      <el-button @click="dialogTableVisible5 = true">手动添加标签</el-button>
     </template>
     <template #right>
       <el-badge>
-        <el-button type="primary" @click="dialogTableVisible5 = true">手动添加标签</el-button>
         <el-button type="primary" @click="dialogTableVisible4 = true">查看待打印列表</el-button>
       </el-badge>
     </template>
@@ -27,10 +27,10 @@
   <el-dialog v-model="dialogTableVisible3" title="创建入仓单"  fullscreen>
     <createdPutOrder @sure="toPrint"/>
   </el-dialog>
-  <el-dialog v-model="dialogTableVisible" title="入仓单产品详情"  width="80%">
+  <el-dialog v-model="dialogTableVisible" title="入仓单——产品详情"  width="80%">
     <warehouseReceipt @cancel="dialogTableVisible=false" />
   </el-dialog>
-  <el-dialog v-model="dialogTableVisible2" title="入仓单拆单详情"  width="80%">
+  <el-dialog v-model="dialogTableVisible2" title="入仓单——拆单详情"  width="80%">
     <orderOpening @cancel="dialogTableVisible2=false" />
   </el-dialog>
   <el-dialog v-model="dialogTableVisible4" title="待打印列表"  width="80%">
