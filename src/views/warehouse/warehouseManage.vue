@@ -16,7 +16,8 @@
         <el-button type="primary" :icon="Search">查询</el-button>
       </el-button-group>
     </div>
-    <div class="right"></div>
+    <div class="right">
+    </div>
   </div>
   <pageHeader>
     <template #left>
@@ -25,6 +26,9 @@
           <el-button :icon="FullScreen" />
         </template>
       </el-input>
+    </template>
+    <template #right>
+      <el-button type="primary" @click="dialogBoolean = true">excel对比库存</el-button>
     </template>
   </pageHeader>
   <el-tag>库存列表</el-tag>
@@ -61,6 +65,14 @@
       @cancel="dialogTableVisible = false"
     />
   </el-dialog>
+  <el-dialog
+    v-model="dialogBoolean"
+    title="excel对比库存"
+    width="95%"
+    height="90%"
+  >
+  <diffWarehouse />
+  </el-dialog>
 </template>
 
 <script setup>
@@ -69,6 +81,7 @@ import batchEdit from "./batchEdit.vue";
 import { reactive, defineEmits, defineProps, ref } from "vue";
 import { ElMessage } from "element-plus";
 import drawer from "@/components/drawer.vue";
+import diffWarehouse from "./diffWarehouse.vue";
 import { FullScreen, Search, ArrowDown } from "@element-plus/icons-vue";
 const columnConfig = reactive([
   "条码编号",
@@ -106,6 +119,7 @@ let dialogTableVisible = ref(false);
 const printNumber = ref(0);
 const selected = (selection) => (printNumber.value = selection.length);
 const more = ref(false);
+let dialogBoolean = ref(false);
 </script>
 
 <style lang="less" scoped>

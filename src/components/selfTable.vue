@@ -2,7 +2,7 @@
   <el-table
     :data="props.tableData"
     stripe
-    style="width: 100%; height: 500px"
+    :style="`width: 100%; height: ${heightAuto ? 'auto': '' || height || 500}px`"
     @selection-change="handleSelectionChange"
     v-bind="$attrs"
   >
@@ -49,6 +49,8 @@ const props = defineProps({
   selection: Boolean,
   sortableIndex: Array,
   editable: Array,
+  height: Number,
+  heightAuto: Boolean,
 });
 const columnConfig = props.columnConfig.map((item, index) => ({
   key: index + 1,

@@ -15,16 +15,14 @@
       <el-button type="primary" @click="drawerBoolean2 = true"
         >创建出货指令单</el-button
       >
-      <!-- <el-button type="success">查看我的预出库</el-button> -->
     </template>
     <template #right>
-      <!-- <el-button type="primary" @click="add">全部出库</el-button> -->
     </template>
   </pageHeader>
   <el-tabs v-model="step">
     <el-tab-pane label="待出货指令单" name="1">
       <pageHeader>
-        <template #right>
+        <template #left>
           <el-button type="primary" @click="drawerBoolean3 = true"
             >批量出库</el-button
           >
@@ -43,7 +41,7 @@
         selection
         :column-config="columnConfig2"
         :tableData="tableData3"
-        :buttons="['已出货详情']"
+        :buttons="['详情']"
         @toolsHandle="toolsHandle3"
       />
     </el-tab-pane>
@@ -64,11 +62,11 @@
       :column-config="columnConfig"
       :sortableIndex="sortableIndex"
       :tableData="tableData"
-      :buttons="['详情']"
+      :buttons="['删除']"
     />
   </el-dialog>
   <el-dialog v-model="drawerBoolean2" title="创建出货指令单" fullscreen>
-    <createdMinusOrder @save="addMinusOrder" />
+    <createdMinusOrder @save="addMinusOrder" @toMinus="addMinusOrder" />
   </el-dialog>
   <drawer
     title="添加出库记录"
@@ -92,7 +90,7 @@ let title = ref("待出货详情");
 let step = ref("1");
 const props = defineProps({});
 const emit = defineEmits([]);
-const columnConfig2 = reactive(["指令单号", "所属包包", "日期"]);
+const columnConfig2 = reactive(["指令单号", "所属包包", "日期", "核对状态"]);
 const tableData2 = reactive([]);
 const addMinusOrder = () => {
   drawerBoolean2.value = false;
@@ -102,6 +100,7 @@ const addMinusOrder = () => {
       Math.random() * 10
     )}`,
     3: `2022/06/${Math.floor(Math.random() * 30)}`,
+    4: ['核对一致', '数目不对'][Math.floor(Math.random() * 10)%2]
   });
 };
 const toolsHandle2 = (type) => {
@@ -109,13 +108,14 @@ const toolsHandle2 = (type) => {
     tableData2.splice(0, 1);
   }
   if (type === 1) {
-    title.value = "待出货详情";
-    drawerBoolean3.value = true;
+    // title.value = "待出货详情";
+    // drawerBoolean3.value = true;
+    drawerBoolean2.value = true;
   }
 };
 const toolsHandle3 = () => {
   title.value = "已出货详情";
-  drawerBoolean3.value = true;
+  drawerBoolean2.value = true;
 };
 const tableData3 = reactive(
   new Array(20).fill(0).map(() => ({

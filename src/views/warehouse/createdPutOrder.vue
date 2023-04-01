@@ -32,16 +32,6 @@
         @toolsHandle="toolsHandle"
       />
     </el-tab-pane>
-    <!-- <el-tab-pane label="入仓单拆解" name="3">
-      <el-header class="flex items-center justify-end">
-        <el-button type="success" @click="step = '4'">生成标签</el-button>
-      </el-header>
-      <selfTable
-        :column-config="columnConfig2"
-        :tableData="tableData2"
-        :editable="[5, 6]"
-      />
-    </el-tab-pane> -->
     <el-tab-pane label="标签" name="3">
       <el-tabs tab-position="left">
         <el-tab-pane label="整箱标签">
