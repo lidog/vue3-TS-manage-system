@@ -25,9 +25,10 @@
       />
     </template>
     <el-table-column label="操作" v-if="buttons && buttons.length > 0">
-      <template #default>
+      <template #default="scope">
         <template v-for="(item, index) in buttons">
           <el-button
+            v-if="props.buttonAuth ? props.buttonAuth(scope.row) : true"
             type="primary"
             link
             @click="toolsHandle(index)"
@@ -51,6 +52,7 @@ const props = defineProps({
   editable: Array,
   height: Number,
   heightAuto: Boolean,
+  buttonAuth: Function,
 });
 const columnConfig = props.columnConfig.map((item, index) => ({
   key: index + 1,

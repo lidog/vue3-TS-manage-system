@@ -5,6 +5,9 @@
         <el-form-item label="指令单编号">
           <el-input />
         </el-form-item>
+        <el-form-item label="出单人">
+          <el-input />
+        </el-form-item>
         <el-form-item label="所属包包">
           <el-input />
         </el-form-item>

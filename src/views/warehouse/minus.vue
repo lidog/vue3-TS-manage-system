@@ -91,7 +91,16 @@ let step = ref("1");
 const props = defineProps({});
 const emit = defineEmits([]);
 const columnConfig2 = reactive(["指令单号", "所属包包", "日期", "核对状态"]);
-const tableData2 = reactive([]);
+const tableData2 = reactive(new Array(10).fill(0).map(()=> {
+  return {
+    1: `XT-FG-2023-02-${Math.floor(Math.random() * 30)}`,
+    2: `S-HMW${Math.floor(Math.random() * 10)}-SQ-${Math.floor(
+      Math.random() * 10
+    )}`,
+    3: `2022/06/${Math.floor(Math.random() * 30)}`,
+    4: ['核对一致', '数目不对'][Math.floor(Math.random() * 10)%2]
+  }
+}));
 const addMinusOrder = () => {
   drawerBoolean2.value = false;
   tableData2.push({

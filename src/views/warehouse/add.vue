@@ -65,7 +65,7 @@ const tableData = new Array(100).fill(null).map(() => ({
   9: Math.floor(Math.random() * 1000 + 1),
   10: "成生",
 }));
-let _tableData = reactive([]);
+let _tableData = reactive(tableData.slice(0,10));
 const sortableIndex = reactive([0, 1, 2, 3, 4, 5, 6]);
 const toolsHandle = (type) => {
   if (type === 0) {
