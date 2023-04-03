@@ -20,20 +20,9 @@ export const routes: RouteRecordRaw[] = [
         },
         component: () =>
           import(
-            /* webpackChunkName: "produceInfo" */ "../views/warehouse/produceInfo.vue"
+            /* webpackChunkName: "produceInfo" */ "@/views/warehouse/produceInfo.vue"
           ),
       },
-      // {
-      //   path: "warehouse/printLabel",
-      //   meta: {
-      //     title: "仓库管理-打印标签",
-      //     premiss: "2",
-      //   },
-      //   component: () =>
-      //     import(
-      //       /* webpackChunkName: "printLabel" */ "../views/warehouse/printLabel.vue"
-      //     ),
-      // },
       {
         path: "warehouse/labelManagement",
         meta: {
@@ -42,7 +31,7 @@ export const routes: RouteRecordRaw[] = [
         },
         component: () =>
           import(
-            /* webpackChunkName: "printLabel" */ "../views/warehouse/labelManagement.vue"
+            /* webpackChunkName: "labelManagement" */ "@/views/warehouse/labelManagement.vue"
           ),
       },
       {
@@ -53,7 +42,7 @@ export const routes: RouteRecordRaw[] = [
         },
         component: () =>
           import(
-            /* webpackChunkName: "add" */ "../views/warehouse/add.vue"
+            /* webpackChunkName: "add" */ "@/views/warehouse/add.vue"
           ),
       },
       {
@@ -64,7 +53,7 @@ export const routes: RouteRecordRaw[] = [
         },
         component: () =>
           import(
-            /* webpackChunkName: "minus" */ "../views/warehouse/minus.vue"
+            /* webpackChunkName: "minus" */ "@/views/warehouse/minus.vue"
           ),
       },
       {
@@ -75,7 +64,7 @@ export const routes: RouteRecordRaw[] = [
         },
         component: () =>
           import(
-            /* webpackChunkName: "warehouseManage" */ "../views/warehouse/warehouseManage.vue"
+            /* webpackChunkName: "warehouseManage" */ "@/views/warehouse/warehouseManage.vue"
           ),
       },
       {
@@ -86,7 +75,7 @@ export const routes: RouteRecordRaw[] = [
           premiss: "3",
         },
         component: () =>
-          import(/* webpackChunkName: "tabs" */ "../views/tabs.vue"),
+          import(/* webpackChunkName: "tabs" */ "@/views/tabs.vue"),
       },
       {
         path: "/user",
@@ -95,7 +84,7 @@ export const routes: RouteRecordRaw[] = [
           title: "个人中心",
         },
         component: () =>
-          import(/* webpackChunkName: "user" */ "../views/user.vue"),
+          import(/* webpackChunkName: "user" */ "@/views/user.vue"),
       },
     ],
   },
@@ -106,7 +95,7 @@ export const routes: RouteRecordRaw[] = [
       title: "登录",
     },
     component: () =>
-      import(/* webpackChunkName: "login" */ "../views/login.vue"),
+      import(/* webpackChunkName: "login" */ "@/views/login.vue"),
   },
   {
     path: "/403",
@@ -114,7 +103,7 @@ export const routes: RouteRecordRaw[] = [
     meta: {
       title: "没有权限",
     },
-    component: () => import(/* webpackChunkName: "403" */ "../views/403.vue"),
+    component: () => import(/* webpackChunkName: "403" */ "@/views/403.vue"),
   },
 ];
 
