@@ -117,13 +117,16 @@
   </el-tabs>
   <el-dialog v-model="dialogTableVisible" title="添加入仓单记录">
     <el-form class="w-2/5">
+      <el-form-item label="日期">
+        <el-input />
+      </el-form-item>
       <el-form-item label="产品编号">
         <el-input />
       </el-form-item>
       <el-form-item label="成品归属">
         <el-input />
       </el-form-item>
-      <el-form-item label="每箱几个">
+      <el-form-item label="每箱数量">
         <el-input />
       </el-form-item>
       <el-form-item label="几箱">

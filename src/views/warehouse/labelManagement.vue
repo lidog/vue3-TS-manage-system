@@ -26,7 +26,7 @@
         :sortableIndex="sortableIndex"
         :column-config="columnConfig"
         :tableData="tableData"
-        :buttons="['产品详情', '拆单详情']"
+        :buttons="['详情']"
         @toolsHandle="toolsHandle"
       />
     </el-tab-pane>
@@ -84,10 +84,7 @@ const dialogTableVisible4 = ref(false);
 const dialogTableVisible5 = ref(false);
 const toolsHandle = (type) => {
   if (type === 0) {
-    dialogTableVisible.value = true;
-  }
-  if (type === 1) {
-    dialogTableVisible2.value = true;
+    dialogTableVisible3.value = true;
   }
 };
 const toPrint = () => {
