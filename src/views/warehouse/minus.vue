@@ -1,79 +1,46 @@
 <template>
   <pageHeader>
     <template #left>
-      <el-input
-        style="width: 50%"
-        class="mr-2"
-        placeholder="扫码出库"
-        clearable
-      >
+      <el-input style="width: 50%" class="mr-2" placeholder="扫码出库" clearable>
         <template #append>
           <el-button :icon="FullScreen" @click="record" />
         </template>
       </el-input>
       <el-button @click="drawerBoolean = true">手动出库</el-button>
-      <el-button type="primary" @click="drawerBoolean2 = true"
-        >创建出货指令单</el-button
-      >
+      <el-button type="primary" @click="drawerBoolean2 = true">创建出货指令单</el-button>
     </template>
     <template #right>
     </template>
   </pageHeader>
   <el-tabs v-model="step">
-    <el-tab-pane label="待出货指令单" name="1">
+    <el-tab-pane label="待出库记录" name="1">
       <pageHeader>
         <template #left>
-          <el-button type="primary" @click="drawerBoolean3 = true"
-            >批量出库</el-button
-          >
+          <el-button type="primary" @click="partial">部分出库</el-button>
+          <el-button type="primary" @click="minusAll">全部出库</el-button>
         </template>
       </pageHeader>
-      <selfTable
-        selection
-        :column-config="columnConfig2"
-        :tableData="tableData2"
-        :buttons="['删除', '详情']"
-        @toolsHandle="toolsHandle2"
-      />
+      <selfTable selection :column-config="columnConfig" :sortableIndex="sortableIndex" :tableData="tableData"
+        :buttons="['删除']" />
     </el-tab-pane>
-    <el-tab-pane label="历史出货指令单" name="2">
-      <selfTable
-        selection
-        :column-config="columnConfig2"
-        :tableData="tableData3"
-        :buttons="['详情']"
-        @toolsHandle="toolsHandle3"
-      />
+    <el-tab-pane label="待出货指令单" name="2">
+      <pageHeader>
+        <template #left>
+          <el-button type="primary" @click="drawerBoolean3 = true">合并出库记录</el-button>
+        </template>
+      </pageHeader>
+      <selfTable selection :column-config="columnConfig2" :tableData="tableData2" :buttons="['删除', '详情']"
+        @toolsHandle="toolsHandle2" />
+    </el-tab-pane>
+    <el-tab-pane label="历史出货指令单" name="3">
+      <selfTable selection :column-config="columnConfig2" :tableData="tableData3" :buttons="['详情']"
+        @toolsHandle="toolsHandle3" />
     </el-tab-pane>
   </el-tabs>
-  <el-dialog v-model="drawerBoolean3" :title="title" width="80%">
-    <pageHeader>
-      <template #right>
-        <el-button
-          v-if="title === '待出货详情'"
-          type="primary"
-          @click="minusAll"
-          >全部出库</el-button
-        >
-      </template>
-    </pageHeader>
-    <selfTable
-      selection
-      :column-config="columnConfig"
-      :sortableIndex="sortableIndex"
-      :tableData="tableData"
-      :buttons="['删除']"
-    />
-  </el-dialog>
   <el-dialog v-model="drawerBoolean2" title="创建出货指令单" fullscreen>
     <createdMinusOrder @save="addMinusOrder" @toMinus="addMinusOrder" />
   </el-dialog>
-  <drawer
-    title="添加出库记录"
-    v-model="drawerBoolean"
-    :formItem="formItem"
-    @sure="record"
-  />
+  <drawer title="添加出库记录" v-model="drawerBoolean" :formItem="formItem" @sure="record" />
 </template>
 
 <script setup>
@@ -91,14 +58,14 @@ let step = ref("1");
 const props = defineProps({});
 const emit = defineEmits([]);
 const columnConfig2 = reactive(["指令单号", "所属包包", "日期", "核对状态"]);
-const tableData2 = reactive(new Array(10).fill(0).map(()=> {
+const tableData2 = reactive(new Array(10).fill(0).map(() => {
   return {
     1: `XT-FG-2023-02-${Math.floor(Math.random() * 30)}`,
     2: `S-HMW${Math.floor(Math.random() * 10)}-SQ-${Math.floor(
       Math.random() * 10
     )}`,
     3: `2022/06/${Math.floor(Math.random() * 30)}`,
-    4: ['核对一致', '数目不对'][Math.floor(Math.random() * 10)%2]
+    4: ['核对一致', '数目不对'][Math.floor(Math.random() * 10) % 2]
   }
 }));
 const addMinusOrder = () => {
@@ -109,7 +76,7 @@ const addMinusOrder = () => {
       Math.random() * 10
     )}`,
     3: `2022/06/${Math.floor(Math.random() * 30)}`,
-    4: ['核对一致', '数目不对'][Math.floor(Math.random() * 10)%2]
+    4: ['核对一致', '数目不对'][Math.floor(Math.random() * 10) % 2]
   });
 };
 const toolsHandle2 = (type) => {
@@ -168,7 +135,6 @@ const minusAll = () => {
 
 // 录入单条出库
 const record = () => {
-  tableData.splice(0);
   tableData.push({
     1: `${Math.floor(Math.random() * 1000000)}`,
     2: `2022/06/${Math.floor(Math.random() * 30)}`,
@@ -179,8 +145,10 @@ const record = () => {
     7: Math.floor(Math.random() * 1000 + 1),
     8: "成生",
   });
-  drawerBoolean3.value = true;
 };
+const partial = () => {
+  ElMessage.warning("请勾选一条需要部分出库的记录");
+}
 </script>
 
 <style lang="less" scoped></style>

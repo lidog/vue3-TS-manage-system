@@ -20,7 +20,8 @@
     </template>
   </pageHeader>
   <el-tabs v-model="step">
-    <el-tab-pane label="历史入仓单" name="1">
+    <el-tab-pane label="待处理入仓单" name="1">
+      <el-button @click="dialogTableVisible6 = true">批量处理</el-button>
       <selfTable
         selection
         :sortableIndex="sortableIndex"
@@ -30,7 +31,17 @@
         @toolsHandle="toolsHandle"
       />
     </el-tab-pane>
-    <el-tab-pane label="已打印标签列表" name="2">
+    <el-tab-pane label="历史入仓单" name="2">
+      <selfTable
+        selection
+        :sortableIndex="sortableIndex"
+        :column-config="columnConfig"
+        :tableData="tableData"
+        :buttons="['详情']"
+        @toolsHandle="toolsHandle"
+      />
+    </el-tab-pane>
+    <el-tab-pane label="已打印标签列表" name="3">
       <selfTable
         selection
         :column-config="columnConfig2"
@@ -49,8 +60,11 @@
   <el-dialog v-model="dialogTableVisible2" title="入仓单——拆单详情" width="80%">
     <orderOpening @cancel="dialogTableVisible2 = false" />
   </el-dialog>
-  <el-dialog v-model="dialogTableVisible4" title="待打印列表" width="80%">
+  <el-dialog v-model="dialogTableVisible4" title="待打印标签" width="80%">
     <prePrint @cancel="dialogTableVisible4 = false" />
+  </el-dialog>
+  <el-dialog v-model="dialogTableVisible6" title="待打印标签" width="80%">
+    <batchPutOrderLabel @sure="dialogTableVisible6 = false" />
   </el-dialog>
   <drawer
     title="手动添加标签"
@@ -68,6 +82,7 @@ import createdPutOrder from "./createdPutOrder.vue";
 import prePrint from "./prePrint.vue";
 import { Search } from "@element-plus/icons-vue";
 import { reactive, ref } from "vue";
+import batchPutOrderLabel from "./batchPutOrderLabel.vue"
 const columnConfig = reactive(["创建日期", "制表人", "签收人"]);
 const tableData = reactive(
   new Array(100).fill(null).map(() => ({
@@ -82,6 +97,7 @@ const dialogTableVisible2 = ref(false);
 const dialogTableVisible3 = ref(false);
 const dialogTableVisible4 = ref(false);
 const dialogTableVisible5 = ref(false);
+const dialogTableVisible6 = ref(false);
 const toolsHandle = (type) => {
   if (type === 0) {
     dialogTableVisible3.value = true;

@@ -1,39 +1,5 @@
 <template>
-  <el-tabs v-model="step">
-    <el-tab-pane label="入仓单" name="1">
-      <el-form class="w-2/5">
-        <el-form-item label="入仓单编号">
-          <el-input />
-        </el-form-item>
-        <el-form-item label="日期">
-          <el-date-picker v-model="date" type="date" />
-        </el-form-item>
-        <el-form-item label="制表人">
-          <el-input />
-        </el-form-item>
-        <el-form-item label="签收人">
-          <el-input />
-        </el-form-item>
-        <el-button @click="step = '2'">确定</el-button>
-      </el-form>
-    </el-tab-pane>
-    <el-tab-pane label="添加入仓记录" name="2">
-      <el-header class="flex items-center justify-end">
-        <el-button type="primary" @click="dialogTableVisible = true"
-          >添加记录</el-button
-        >
-        <el-button type="primary">保存入仓单</el-button>
-        <el-button type="success" @click="step = '3'">生成标签</el-button>
-      </el-header>
-      <selfTable
-        :column-config="columnConfig"
-        :tableData="tableData"
-        :buttons="['删除', '修改']"
-        @toolsHandle="toolsHandle"
-      />
-    </el-tab-pane>
-    <el-tab-pane label="标签" name="3">
-      <el-tabs tab-position="left">
+    <el-tabs tab-position="left">
         <el-tab-pane label="整箱标签">
           <pageHeader>
             <template #left>
@@ -60,8 +26,7 @@
               >
             </template>
             <template #right>
-              <el-button type="primary" @click="edit">{{ editText }}</el-button>
-              <el-button type="primary" @click="toPrint">去打印</el-button>
+              <el-button type="primary" @click="toPrint">打印</el-button>
             </template>
           </pageHeader>
           <selfTable
@@ -112,33 +77,6 @@
           />
         </el-tab-pane>
       </el-tabs>
-    </el-tab-pane>
-  </el-tabs>
-  <el-dialog v-model="dialogTableVisible" title="添加入仓单记录">
-    <el-form class="w-2/5">
-      <el-form-item label="日期">
-        <el-input />
-      </el-form-item>
-      <el-form-item label="产品编号">
-        <el-input />
-      </el-form-item>
-      <el-form-item label="成品归属">
-        <el-input />
-      </el-form-item>
-      <el-form-item label="每箱数量">
-        <el-input />
-      </el-form-item>
-      <el-form-item label="几箱">
-        <el-input />
-      </el-form-item>
-      <el-form-item v-for="(_, index) in shareBox" label="拼箱">
-        <el-input />
-        <el-button type="text" @click="shareBox--">删除</el-button>
-      </el-form-item>
-      <el-button @click="ping">增加拼箱</el-button>
-      <el-button @click="add" type="primary">确定</el-button>
-    </el-form>
-  </el-dialog>
 </template>
 
 <script setup>
@@ -182,15 +120,6 @@ const toolsHandle = (type) => {
     dialogTableVisible.value = true;
   }
 };
-// const columnConfig2 = reactive([
-//   "产品编号",
-//   "产品名称",
-//   "入仓数量",
-//   "个/箱",
-//   "余数",
-//   "余数是否拼箱",
-//   "拼箱箱号",
-// ]);
 const tableData2 = reactive(
   new Array(10).fill(null).map(() => {
     const count = Math.floor(Math.random() * 10000);
@@ -282,4 +211,6 @@ const toPrint = () => {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="less" scoped>
+
+</style>
