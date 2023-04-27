@@ -16,12 +16,11 @@
     <el-tab-pane label="待出库记录" name="1">
       <pageHeader>
         <template #left>
-          <el-button type="primary" @click="partial">部分出库</el-button>
           <el-button type="primary" @click="minusAll">全部出库</el-button>
         </template>
       </pageHeader>
       <selfTable selection :column-config="columnConfig" :sortableIndex="sortableIndex" :tableData="tableData"
-        :buttons="['删除']" />
+        :buttons="['删除', '部分出库']" />
     </el-tab-pane>
     <el-tab-pane label="待出货指令单" name="2">
       <pageHeader>
@@ -146,9 +145,6 @@ const record = () => {
     8: "成生",
   });
 };
-const partial = () => {
-  ElMessage.warning("请勾选一条需要部分出库的记录");
-}
 </script>
 
 <style lang="less" scoped></style>
